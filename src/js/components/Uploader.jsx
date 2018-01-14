@@ -1,26 +1,39 @@
 import React from 'react';
+import Dropzone from 'react-dropzone'
 
 class Uploader extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = { files: [] }
 
-        this.handleClick = this.handleClick.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
-    handleClick(item) {
-        //console.log(item); // null
+    onDrop(files) {
+        this.setState({
+            files
+        });
     }
 
     render() {
 
         return (
             <div>
-                Hello there!! hahs
+                <Dropzone
+                    onDrop={this.onDrop}
+                    accept=".jpeg,.png"
+                >
+                    <p>Drop it like it's hot </p>
+                </Dropzone>
+                <ul>
+                    {
+                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+                    }
+                </ul>
             </div>
         );
     }
