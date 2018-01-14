@@ -4,5 +4,5 @@ import Uploader from './components/Uploader';
 
 render(
     <Uploader />,
-    document.getElementById('reacting-form')
+    document.getElementById('upload-something')
 );

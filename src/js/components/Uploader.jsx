@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Countdown extends React.Component {
+class Uploader extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,10 +20,10 @@ class Countdown extends React.Component {
 
         return (
             <div>
-                Hello there!
+                Hello there!! hahs
             </div>
         );
     }
 }
 
-export default Countdown;
+export default Uploader;
