@@ -1,0 +1,12 @@
+{
+  "name": "react-uploader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Paul Stewart",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.5"
+  }
+}
