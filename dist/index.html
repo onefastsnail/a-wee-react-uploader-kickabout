@@ -12,13 +12,31 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<style>
-		#upload-something > div{
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
+
+		html, body {
 			height: 100%;
+			margin: 0;
+			text-align: center;
 		}
+
+		body {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.s-uploader {
+			width: 100%;
+			max-width: 600px;
+			position: relative;
+		}
+
+		.s-uploader button {
+			margin-bottom: 1em;
+		}
+
 	</style>
 
 </head>

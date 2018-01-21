@@ -1,4 +1,5 @@
 import React from 'react';
+import { post } from 'axios';
 import Dropzone from 'react-dropzone'
 
 class Uploader extends React.Component {
@@ -9,6 +10,8 @@ class Uploader extends React.Component {
         this.state = { files: [] }
 
         this.onDrop = this.onDrop.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.uploadFile = this.uploadFile.bind(this);
     }
 
     componentDidMount() { }
@@ -19,21 +22,50 @@ class Uploader extends React.Component {
         });
     }
 
+    uploadFile(){
+        const formData = new FormData();
+
+        this.state.files.map((file, index) => {
+            formData.append('file'+index, file);
+        });
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        return post('http://wordpress.vm/upload.php', formData, config);
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        this.uploadFile().then(function (res) {
+            console.log(res.data);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    }
+
     render() {
 
+        let dropzoneRef;
+
         return (
-            <div>
+            <div className="s-uploader">
+            <form action="" method="post" onSubmit={this.onSubmit}>
+                <button type="button" onClick={() => { dropzoneRef.open() }}>Open File Dialog</button>
                 <Dropzone
                     onDrop={this.onDrop}
-                    accept=".jpeg,.png"
+                    ref={(node) => { dropzoneRef = node; }}
                 >
                     <p>Drop it like it's hot </p>
                 </Dropzone>
-                <ul>
-                    {
-                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-                    }
-                </ul>
+                {this.state.files.map(f => <p key={f.name}>{f.name} - {f.size} bytes</p>)}
+                <button type="submit">Upload</button>
+                </form>
             </div>
         );
     }
